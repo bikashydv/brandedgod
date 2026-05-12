@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import {
   Mic, Headphones, Play, ChevronLeft, ChevronRight, ArrowUpRight,
-  Instagram, Youtube, Twitter, Spotify, Podcast, Mail, Sparkles
+  Instagram, Youtube, Twitter, Music, Radio, Mail, Sparkles
 } from "lucide-react";
 import hostPortrait from "@/assets/host-portrait.jpg";
 import epCreator from "@/assets/ep-creator-economy.jpg";
@@ -278,7 +278,7 @@ function Home() {
           </a>
           <div className="flex justify-center gap-3 mt-10">
             {[
-              { I: Spotify, l: "Spotify" }, { I: Podcast, l: "Apple" },
+              { I: Music, l: "Spotify" }, { I: Radio, l: "Apple" },
               { I: Youtube, l: "YouTube" }, { I: Instagram, l: "Instagram" },
               { I: Twitter, l: "Twitter" },
             ].map(({ I, l }) => (

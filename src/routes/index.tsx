@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Mic, Headphones, Play, ChevronLeft, ChevronRight, ArrowUpRight,
   Instagram, Youtube, Twitter, Music, Radio, Mail, Sparkles
@@ -43,9 +43,22 @@ const portfolio = [
 
 const cats = ["All", "Podcast", "Film", "Writing", "Speaking", "Brand"] as const;
 
+const heroSlides = [
+  { kicker: "EP · 088 · New", title: "Conversations that take their time.", desc: "Slow, long-form audio about craft, attention, and the people quietly building things that matter.", img: hostPortrait, cta: "Listen to latest" },
+  { kicker: "Field Notes", title: "A documentary on independent makers.", desc: "Six episodes recorded across three continents — out now on the studio channel.", img: workFilm, cta: "Watch the series" },
+  { kicker: "The Margin", title: "Quarterly essays on attention & craft.", desc: "Read the latest issue — on what we lose when the algorithm stops listening.", img: workEssays, cta: "Read the essay" },
+  { kicker: "On Stage", title: "Keynote: On Listening Better.", desc: "Recorded live at Reframe Conf 2025 — a 32 minute talk on slow media.", img: workTalks, cta: "Watch the talk" },
+];
+
 function Home() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState<(typeof cats)[number]>("All");
+  const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 3000);
+    return () => clearInterval(id);
+  }, []);
 
   const scroll = (dir: number) => {
     sliderRef.current?.scrollBy({ left: dir * 480, behavior: "smooth" });
@@ -74,6 +87,42 @@ function Home() {
           </a>
         </div>
       </header>
+
+      {/* TOP SLIDER — auto rotates every 3s */}
+      <section aria-label="Featured highlights" className="relative border-b border-border/60 overflow-hidden">
+        <div className="relative h-[280px] md:h-[360px]">
+          {heroSlides.map((s, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              aria-hidden={i !== slide}
+            >
+              <img src={s.img} alt="" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
+              <div className="relative max-w-7xl mx-auto px-6 lg:px-10 h-full flex flex-col justify-center max-w-2xl">
+                <div className="text-xs uppercase tracking-[0.3em] text-primary mb-3">{s.kicker}</div>
+                <h2 className="font-display text-3xl md:text-5xl leading-tight">{s.title}</h2>
+                <p className="text-muted-foreground mt-3 max-w-lg">{s.desc}</p>
+                <div className="mt-5">
+                  <a href="#featured" className="inline-flex items-center gap-2 bg-gradient-ember text-primary-foreground px-5 py-2.5 rounded-full text-sm font-medium shadow-glow hover:opacity-90 transition">
+                    <Play className="w-3.5 h-3.5 fill-current" /> {s.cta}
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {heroSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setSlide(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all ${i === slide ? "w-8 bg-primary" : "w-4 bg-muted-foreground/40 hover:bg-muted-foreground"}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden">

@@ -4,6 +4,7 @@ import {
   Mic, Headphones, Play, ChevronLeft, ChevronRight, ArrowUpRight,
   Instagram, Youtube, Twitter, Music, Radio, Mail, Sparkles
 } from "lucide-react";
+import logo from "@/assets/logo.png";
 import hostPortrait from "@/assets/host-portrait.jpg";
 import epCreator from "@/assets/ep-creator-economy.jpg";
 import epDeep from "@/assets/ep-deep-work.jpg";
@@ -57,8 +58,8 @@ function Home() {
       {/* NAV */}
       <header className="sticky top-0 z-50 backdrop-blur-lg bg-background/70 border-b border-border/60">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2 font-display text-xl">
-            <span className="w-2 h-2 rounded-full bg-primary live-dot" />
+          <a href="#top" className="flex items-center gap-2.5 font-display text-xl">
+            <img src={logo} alt="Mira Cole Studio logo" width={36} height={36} className="w-9 h-9 object-contain" />
             <span>Mira Cole</span>
             <span className="text-muted-foreground text-xs ml-1 font-sans tracking-widest">/ STUDIO</span>
           </a>

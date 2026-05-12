@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Mic, Headphones, Play, ChevronLeft, ChevronRight, ArrowUpRight,
   Instagram, Youtube, Twitter, Music, Radio, Mail, Sparkles
@@ -43,9 +43,22 @@ const portfolio = [
 
 const cats = ["All", "Podcast", "Film", "Writing", "Speaking", "Brand"] as const;
 
+const heroSlides = [
+  { kicker: "EP · 088 · New", title: "Conversations that take their time.", desc: "Slow, long-form audio about craft, attention, and the people quietly building things that matter.", img: hostPortrait, cta: "Listen to latest" },
+  { kicker: "Field Notes", title: "A documentary on independent makers.", desc: "Six episodes recorded across three continents — out now on the studio channel.", img: workFilm, cta: "Watch the series" },
+  { kicker: "The Margin", title: "Quarterly essays on attention & craft.", desc: "Read the latest issue — on what we lose when the algorithm stops listening.", img: workEssays, cta: "Read the essay" },
+  { kicker: "On Stage", title: "Keynote: On Listening Better.", desc: "Recorded live at Reframe Conf 2025 — a 32 minute talk on slow media.", img: workTalks, cta: "Watch the talk" },
+];
+
 function Home() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState<(typeof cats)[number]>("All");
+  const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 3000);
+    return () => clearInterval(id);
+  }, []);
 
   const scroll = (dir: number) => {
     sliderRef.current?.scrollBy({ left: dir * 480, behavior: "smooth" });

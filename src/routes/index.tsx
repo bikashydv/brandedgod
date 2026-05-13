@@ -296,10 +296,49 @@ function Home() {
       <section id="about" className="py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
-            <div className="aspect-square rounded-2xl overflow-hidden border border-border shadow-card">
-              <img src={workEssays} alt="An open essay collection" loading="lazy" className="w-full h-full object-cover" />
+            <div className="relative aspect-square rounded-2xl overflow-hidden border border-border shadow-card group">
+              {aboutSlides.map((s, i) => (
+                <div
+                  key={i}
+                  className={`absolute inset-0 transition-opacity duration-1000 ${i === aboutSlide ? "opacity-100" : "opacity-0"}`}
+                  aria-hidden={i !== aboutSlide}
+                >
+                  <img src={s.img} alt={s.caption} loading="lazy" className="w-full h-full object-cover" />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-5">
+                    <div className="text-[10px] uppercase tracking-[0.25em] text-primary mb-1">
+                      {String(i + 1).padStart(2, "0")} / {String(aboutSlides.length).padStart(2, "0")}
+                    </div>
+                    <div className="font-display text-lg">{s.caption}</div>
+                  </div>
+                </div>
+              ))}
+              <button
+                onClick={() => setAboutSlide((s) => (s - 1 + aboutSlides.length) % aboutSlides.length)}
+                aria-label="Previous image"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 backdrop-blur border border-border opacity-0 group-hover:opacity-100 transition flex items-center justify-center hover:text-primary"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => setAboutSlide((s) => (s + 1) % aboutSlides.length)}
+                aria-label="Next image"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 backdrop-blur border border-border opacity-0 group-hover:opacity-100 transition flex items-center justify-center hover:text-primary"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+              <div className="absolute top-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                {aboutSlides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setAboutSlide(i)}
+                    aria-label={`Go to image ${i + 1}`}
+                    className={`h-1.5 rounded-full transition-all ${i === aboutSlide ? "w-6 bg-primary" : "w-3 bg-muted-foreground/40 hover:bg-muted-foreground"}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
+
           <div className="lg:col-span-7">
             <div className="text-xs uppercase tracking-[0.3em] text-primary mb-4">About</div>
             <h2 className="font-display text-4xl md:text-5xl leading-tight">

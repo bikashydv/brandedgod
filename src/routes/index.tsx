@@ -43,6 +43,17 @@ const portfolio = [
 
 const cats = ["All", "Podcast", "Film", "Writing", "Speaking", "Brand"] as const;
 
+// 👇 ABOUT SLIDER — add or replace images here. Any number works (loops infinitely).
+const aboutSlides = [
+  { img: workEssays, caption: "The Margin — Vol. IV" },
+  { img: hostPortrait, caption: "Studio session, Lisbon" },
+  { img: workFilm, caption: "Field Notes — on location" },
+  { img: workTalks, caption: "Reframe Conf · Keynote" },
+  { img: epDeep, caption: "Recording Ep. 087" },
+  { img: workBrand, caption: "Studio identity system" },
+  { img: epWriting, caption: "Notes on the writing craft" },
+];
+
 const heroSlides = [
   { kicker: "EP · 088 · New", title: "Conversations that take their time.", desc: "Slow, long-form audio about craft, attention, and the people quietly building things that matter.", img: hostPortrait, cta: "Listen to latest" },
   { kicker: "Field Notes", title: "A documentary on independent makers.", desc: "Six episodes recorded across three continents — out now on the studio channel.", img: workFilm, cta: "Watch the series" },

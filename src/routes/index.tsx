@@ -65,9 +65,15 @@ function Home() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState<(typeof cats)[number]>("All");
   const [slide, setSlide] = useState(0);
+  const [aboutSlide, setAboutSlide] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 3000);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => setAboutSlide((s) => (s + 1) % aboutSlides.length), 3500);
     return () => clearInterval(id);
   }, []);
 

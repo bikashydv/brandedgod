@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 src/
 ├── routes/
 │   ├── __root.tsx       # root layout (html/head/body)

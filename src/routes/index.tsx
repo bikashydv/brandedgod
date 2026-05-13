@@ -17,7 +17,7 @@ import workBrand from "@/assets/work-brand.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mira Cole — Podcaster & Content Creator" },
+      { title: "BrandedGod & Content Creator" },
       { name: "description", content: "The personal studio of Mira Cole — host of Signal/Noise, essayist, and creative director. Conversations on craft, culture, and the creator economy." },
     ],
   }),
@@ -90,8 +90,8 @@ function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2.5 font-display text-xl">
             <img src={logo} alt="Mira Cole Studio logo" width={36} height={36} className="w-9 h-9 object-contain" />
-            <span>Mira Cole</span>
-            <span className="text-muted-foreground text-xs ml-1 font-sans tracking-widest">/ STUDIO</span>
+            <span> Branded God</span>
+            <span className="text-muted-foreground text-xs ml-1 font-sans tracking-widest">/ THE CREATOR</span>
           </a>
           <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
             <a href="#featured" className="hover:text-foreground transition">Featured</a>
@@ -100,7 +100,7 @@ function Home() {
             <a href="#contact" className="hover:text-foreground transition">Contact</a>
           </nav>
           <a href="#contact" className="inline-flex items-center gap-2 bg-gradient-ember text-primary-foreground px-4 py-2 rounded-full text-sm font-medium shadow-glow hover:opacity-90 transition">
-            Book Mira <ArrowUpRight className="w-4 h-4" />
+            Book BrandedGod <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
       </header>
@@ -398,8 +398,8 @@ function Home() {
 
       <footer className="py-10 border-t border-border/60">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row gap-4 justify-between text-sm text-muted-foreground">
-          <div>© {new Date().getFullYear()} Mira Cole Studio. All rights reserved.</div>
-          <div className="font-mono text-xs tracking-widest">LISBON · 38.7°N 9.1°W</div>
+          <div>© {new Date().getFullYear()} BrandedGod . All rights reserved.</div>
+          <div className="font-mono text-xs tracking-widest">Nepal · 27°0'21''N / 84°51'32''E</div>
         </div>
       </footer>
     </div>
